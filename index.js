@@ -4,10 +4,10 @@ var _ = require('underscore'),
     requestHandlers = require('./requestHandlers');
 
 var routes = {
-    '/': 'start',
-    '/start': 'start',
-    '/upload': 'upload',
-    '/show': 'show'
+    '/': 'index',
+    '/js': 'clientJS',
+    '/msg-wait': 'msgWait',
+    '/say': 'say'
 };
 
 var handle = {};
