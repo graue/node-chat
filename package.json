@@ -1,0 +1,12 @@
+{
+    "name": "node-chat",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node index"
+    },
+    "dependencies": {
+        "formidable": "1.0.13",
+        "underscore": "1.4.4"
+    }
+}
