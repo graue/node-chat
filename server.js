@@ -12,7 +12,7 @@ function start(route, handle) {
 
     http.createServer(onRequest).listen(9992);
 
-    console.log('server listening on port 9992');
+    console.log('Server listening on port 9992');
 }
 
 exports.start = start;

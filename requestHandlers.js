@@ -53,9 +53,6 @@ exports.say = function(res, req, serverState) {
             time: new Date().getTime()
         });
 
-        console.log('Message "' + fields.msg +
-            '" in color "' + fields.color + '"');
-
         res.writeHead(200, {'content-type': 'text/plain'});
         res.end('cool post, bro');
 
