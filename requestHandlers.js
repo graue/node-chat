@@ -50,7 +50,7 @@ exports.say = function(res, req, serverState) {
         serverState.msgs.push({
             text: fields.msg,
             color: fields.color,
-            time: new Date().valueOf()
+            time: new Date().getTime()
         });
 
         console.log('Message "' + fields.msg +
