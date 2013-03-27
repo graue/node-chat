@@ -8,7 +8,22 @@ $(document).ready(function() {
             type: 'POST',
             url: '/say',
             data: {msg: $('#msg').val(),
-                   color: myColor}
+                   color: myColor},
+            error: function(xhr, status, error) {
+                alert("Couldn't post your message. Sorry! Try again.");
+            },
+            success: function(data) {
+                // If we had lost the long-polling connection, but now
+                // successfully posted a message, reestablish long polling
+                // immediately.
+                if (window.waitingToReconnect) {
+                    // waitingToReconnect is a makeshift boolean but also
+                    // holds the time of the last message we've got.
+                    var time = window.waitingToReconnect;
+                    window.waitingToReconnect = false;
+                    longPollForMsgsSince(time);
+                }
+            }
         });
     });
 
@@ -23,7 +38,12 @@ function longPollForMsgsSince(time) {
             console.log('XHR failed: status=' + status,
                 ', error=' + error);
             console.log('Retrying in 10sec...');
-            setTimeout(function() { longPollForMsgsSince(time); }, 10000);
+            window.waitingToReconnect = time;
+            setTimeout(function() {
+                var time = window.waitingToReconnect;
+                window.waitingToReconnect = false;
+                time && longPollForMsgsSince(time);
+            }, 10000);
         },
         success: function(data) {
             if (!data.messages || data.messages.length < 1) {
