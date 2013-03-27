@@ -13,6 +13,8 @@ function start(route, handle) {
     http.createServer(onRequest).listen(9992);
 
     console.log('Server listening on port 9992');
+
+    return serverState;
 }
 
 exports.start = start;

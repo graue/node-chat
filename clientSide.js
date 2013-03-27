@@ -26,8 +26,9 @@ function longPollForMsgsSince(time) {
             setTimeout(function() { longPollForMsgsSince(time); }, 10000);
         },
         success: function(data) {
-            if (!data.messages) {
-                alert('Data is missing messages object! Abort!');
+            if (!data.messages || data.messages.length < 1) {
+                // Timed out with no new messages. Long poll again.
+                setTimeout(function() { longPollForMsgsSince(time); }, 0);
             } else {
                 data.messages.forEach(function(msg) {
                     var newMsgHtml = '<p style="color: ' + msg.color +

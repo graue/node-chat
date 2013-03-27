@@ -36,7 +36,7 @@ exports.msgWait = function(res, req, serverState) {
         res.writeHead(200, {'content-type': 'application/json'});
         res.end(JSON.stringify({'messages': newMsgs}));
     } else {
-        serverState.longPollReqs.push([res, req]);
+        serverState.longPollReqs.push([res, req, new Date().getTime()]);
     }
 };
 

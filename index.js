@@ -1,7 +1,8 @@
 var _ = require('underscore'),
     server = require('./server'),
     router = require('./router'),
-    requestHandlers = require('./requestHandlers');
+    requestHandlers = require('./requestHandlers'),
+    bgTasks = require('./bgTasks');
 
 var routes = {
     '/': 'index',
@@ -15,4 +16,5 @@ _.each(routes, function(val, key) {
     handle[key] = requestHandlers[val];
 });
 
-server.start(router.route, handle);
+state = server.start(router.route, handle);
+bgTasks.start(state);
