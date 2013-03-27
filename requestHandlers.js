@@ -18,15 +18,15 @@ function serveFile(filename, filetype, res) {
 
 exports.index = function(res) {
     serveFile('index.html', 'text/html', res);
-}
+};
 
 exports.clientJS = function(res) {
     serveFile('clientSide.js', 'text/javascript', res);
-}
+};
 
 exports.msgWait = function(res, req) {
     // todo
-}
+};
 
 exports.say = function(res, req) {
     var form = new formidable.IncomingForm();
@@ -37,4 +37,4 @@ exports.say = function(res, req) {
         res.writeHead(200, {'content-type': 'text/plain'});
         res.end('cool post, bro');
     });
-}
+};
