@@ -25,6 +25,9 @@ $(document).ready(function() {
                 }
             }
         });
+
+        // Clear the input text.
+        $('#msg').val('');
     });
 
     setTimeout(function() { longPollForMsgsSince(0); }, 10);
